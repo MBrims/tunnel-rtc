@@ -33,11 +33,9 @@ window.onload = () => {
     const config = { iceServers: [{ urls: stunServers }] };
     const sender = new RTCPeerConnection(config);
 
-    sender.
 
-    sender.createOffer().then((v) =>{
-        if(v.type == "offer")
-        {
+    sender.createOffer().then((v) => {
+        if (v.type == "offer") {
             console.log("Found offer:")
             console.log(v.sdp);
 
@@ -52,3 +50,31 @@ window.onload = () => {
 
     // new RTCSessionDescription({sdp})
 }
+
+// var findIP = new Promise(
+//     r => {
+//         var w = window, a = new (w.RTCPeerConnection || w.mozRTCPeerConnection || w.webkitRTCPeerConnection)({ iceServers: [] });
+//         a.createDataChannel("");
+//         a.onicecandidate = c => {
+//             try {
+//                 c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(r)
+//             } catch (e) { }
+//         }
+
+//         a.createOffer().then((c) => a.setLocalDescription(c));
+
+//     }
+// )
+
+// findIP().then(ip => console.log(ip));
+
+var w = window, a = new (w.RTCPeerConnection || w.mozRTCPeerConnection || w.webkitRTCPeerConnection)({ iceServers: [] });
+a.createDataChannel("");
+a.onicecandidate = c => {
+    console.log(c);
+
+    // try {
+    //     c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g)
+    // } catch (e) { }
+}
+a.createOffer().then((c) => a.setLocalDescription(c));
