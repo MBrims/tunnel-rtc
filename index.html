@@ -8,15 +8,26 @@
     <div>
         <label>Local</label>
         <input id="localDescInput">
+        <button id="localDescSubBut" onclick="onLocalSubmit();">Submit</button>
     </div>
     <div>
         <label>Remote</label>
         <input id="remoteDescInput" />
+        <button id="remoteDescSubBut" onclick="onRemoteSubmit();">Submit</button>
     </div>
 
-    <input id="recieverInput" type="url" />
+    <div id="senderDiv">
+        <div>
+            <button onclick="createHashURL();">Generate Reciever URL</button>
+        </div>
+        <div>
+            <input readonly="true" id="senderURLOutput" />
+        </div>
+    </div>
 
-    <textarea id="iceServerTextArea"></textarea>
+    <!-- <input id="recieverInput" type="url" />
+
+    <textarea id="iceServerTextArea"></textarea> -->
 
     <script src="tunnel.js"></script>
 
